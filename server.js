@@ -3,13 +3,14 @@ const fs = require('fs/promises');
 const http = require('http');
 
 const server = http.createServer(async(req, res) => {
+    let filePath;
     let contentType;
     //Check if user asking for homepage
     if(req.url != '/') {
-        const filePath = path.join(__dirname, 'html', (req.url).replace('/', ''));
+        filePath = path.join(__dirname, 'html', (req.url).replace('/', ''));
     }
     else {
-        const filePath = path.join(__dirname, 'html', 'index.html');
+        filePath = path.join(__dirname, 'html', 'index.html');
     }
     const extName = path.extname(filePath);
     //Fixate content type based on extension name
